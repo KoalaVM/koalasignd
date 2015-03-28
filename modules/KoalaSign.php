@@ -11,15 +11,27 @@
       if (is_array($data) && isset($data["command"])) {
         $data      = base64_encode(json_encode($data));
         $signature = base64_encode(trim(gnupg_sign($this->gpg, $data)));
-        $connection->send(json_encode(array(
-          "status"  => "200",
-          "message" => "Success: the requested payload was signed",
-          "data"    => json_encode(array(
-              "payload64" => $data,
-              "signature" => $signature
-            ))
-        )));
-        $connection->disconnect();
+        if ($signature != null) {
+          $connection->send(json_encode(array(
+            "status"  => "200",
+            "message" => "Success: the requested payload was signed",
+            "data"    => json_encode(array(
+                "payload64" => $data,
+                "signature" => $signature
+              ))
+          )));
+          $connection->disconnect();
+        }
+        else {
+          // Internal error
+          $connection->send(json_encode(array(
+            "status"  => "500",
+            "message" => "Internal error: the resulting signature was empty - ".
+              "make sure your secret key is not protected and there is not a ".
+              "protected version saved in your GPG keystore"
+          )));
+          $connection->disconnect();
+        }
       }
       else {
         // Malformed request
@@ -28,6 +40,7 @@
           "message" => "Malformed request: the provided data was not a JSON ".
             "array, or did not contain they 'command' key"
         )));
+        $connection->disconnect();
       }
     }
 
