@@ -38,7 +38,7 @@
         $info = gnupg_import($this->gpg, $seckey);
         Logger::debug(var_export($info, true));
         if (is_array($info) && isset($info["fingerprint"]) &&
-            gnupg_addsignkey($this->gpg, $info["fingerprint"])) {
+            gnupg_addsignkey($this->gpg, $info["fingerprint"]) == true) {
           EventHandling::registerForEvent("rawEvent", $this, "receiveRaw");
           return true;
         }
