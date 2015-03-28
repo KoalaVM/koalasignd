@@ -35,7 +35,7 @@
       $seckey = StorageHandling::loadFile($this, "gpg.sec");
       if ($seckey != false && $seckey != null) {
         $this->gpg = gnupg_init();
-        $info = gnupg_import($this->gpg, $pubkey);
+        $info = gnupg_import($this->gpg, $seckey);
         Logger::debug(var_export($info, true));
         if (is_array($info) && isset($info["fingerprint"]) &&
             gnupg_addsignkey($this->gpg, $info["fingerprint"])) {
