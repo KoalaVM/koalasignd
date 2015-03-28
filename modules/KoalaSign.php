@@ -52,6 +52,7 @@
         Logger::debug(var_export($info, true));
         if (is_array($info) && isset($info["fingerprint"]) &&
             gnupg_addsignkey($this->gpg, $info["fingerprint"]) == true) {
+          gnupg_setsignmode($this->gpg, GNUPG_SIG_MODE_DETACH);
           EventHandling::registerForEvent("rawEvent", $this, "receiveRaw");
           return true;
         }
