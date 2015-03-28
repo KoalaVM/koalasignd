@@ -21,8 +21,7 @@ Incoming messages must match the following JSON format:
 ```
 
 * `command` is a string containing the name of the command to execute.
-* Command specific data can optionally be included, commonly with the `data` key
-name.
+* `data` is an optional *protocol agnostic* type of data that `command` expects.
 
 Response
 ========
