@@ -41,3 +41,11 @@ Upon success, `status` will have the value `"200"` and `data` will hold the base
 64 encoded JSON request for `koalad`.
 
 In general, `message` is a string describing the status of the operation.
+
+Licensing
+=========
+
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+International License. To view a copy of this license, visit
+http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+Commons, PO Box 1866, Mountain View, CA 94042, USA.
