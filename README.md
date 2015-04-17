@@ -6,7 +6,7 @@
 `koalasignd` is the daemon responsible for signing outgoing payloads targeted
 for `koalad`.  `koalasignd` uses a JSON-based API on SSL port `4765` by default.
 Outgoing messages are signed with GPG by the daemon using the secret key located
-at `data/KoalaCore/gpg.sec`.
+at `data/KoalaSign/gpg.sec`.
 
 Message Structure
 =================
