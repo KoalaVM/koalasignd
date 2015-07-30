@@ -58,8 +58,8 @@
         }
       }
       StorageHandling::saveFile($this, "gpg.sec", null);
-      Logger::info("Failed to load the master's GPG secret key for KoalaCore.");
-      Logger::info("Place the secret key in a file at data/KoalaCore/gpg.sec");
+      Logger::info("Failed to load the master's GPG secret key for KoalaSign.");
+      Logger::info("Place the secret key in a file at data/KoalaSign/gpg.sec");
       return false;
     }
   }
